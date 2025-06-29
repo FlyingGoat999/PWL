@@ -1,0 +1,16 @@
+{
+    "name": "asus/minggu10",
+    "autoload": {
+        "psr-4": {
+            "Asus\\Minggu10\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "N"
+        }
+    ],
+    "require": {
+        "midtrans/midtrans-php": "^2.6"
+    }
+}
