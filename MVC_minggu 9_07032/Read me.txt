@@ -1,0 +1,66 @@
+1. Model (Mahasiswa.php)
+File Mahasiswa.php
+Fungsi Utama Berisi logika untuk mengakses dan memanipulasi data dari database. 
+Menyediakan metode seperti
+
+getAll() → ambil seluruh data mahasiswa
+
+getById($id) → ambil data mahasiswa berdasarkan ID
+
+add($data) → tambah data
+
+update($id, $data) → update data
+
+delete($id) → hapus data
+
+2. Controller (MahasiswaController.php)
+File: MahasiswaController.php
+
+Fungsi utama:
+Menjembatani antara View dan Model. Menerima request dari pengguna (biasanya melalui URL parameter).
+Memanggil method yang sesuai di Mahasiswa.php. Mengarahkan hasilnya ke View tertentu (menyisipkan file view seperti mahasiswa_list.php, mahasiswa_add.php, dll).
+
+3. View (mahasiswa_list.php, mahasiswa_add.php, mahasiswa_edit.php, dll)
+File: mahasiswa_list.php, mahasiswa_add.php, dll
+
+Fungsi utama:
+Bertugas untuk menampilkan data kepada pengguna.
+Biasanya berupa HTML + sedikit PHP untuk mencetak data.
+Tidak mengandung logika berat (seperti query SQL).
+
+4. Router/Front Controller (index.php)
+File: index.php
+Fungsi utama:
+Sebagai titik awal aplikasi. Membaca parameter seperti action dari URL.
+Mendistribusikan permintaan ke controller sesuai kebutuhan
+
+Alur Proses CRUD Mahasiswa
+1. Menampilkan Data
+index.php?action=list
+➜ MahasiswaController memanggil $model->getAll()
+➜ mahasiswa_list.php ditampilkan dengan data mahasiswa
+
+2. Menambah Mahasiswa
+User buka form: index.php?action=add
+Submit form → POST ke index.php?action=add
+Controller memanggil $model->add($data)
+Redirect kembali ke list
+
+3. Mengedit Mahasiswa
+User buka form: index.php?action=edit&id=1
+Controller ambil data via $model->getById($id)
+Submit form → update via $model->update($id, $data)
+Redirect kembali ke list
+
+4. Menghapus Mahasiswa
+Link: index.php?action=delete&id=1
+Controller memanggil $model->delete($id)
+Redirect ke list
+
+Database (db_mvc.sql)
+File: db_mvc.sql
+Tabel mahasiswa berisi:
+id, nim, nama, jurusan
+Sudah ada data dummy seperti:
+Budi Santoso (Teknik Informatika)
+Dewi Anggraini (Sistem Informasi)
